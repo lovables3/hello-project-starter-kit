@@ -6,9 +6,10 @@ import { LoreChapter, loreChapters } from '@/data/loreData';
 interface LorePanelProps {
   chapter: LoreChapter;
   onClose: () => void;
+  onChapterSelect: (chapter: LoreChapter) => void;
 }
 
-const LorePanel: React.FC<LorePanelProps> = ({ chapter, onClose }) => {
+const LorePanel: React.FC<LorePanelProps> = ({ chapter, onClose, onChapterSelect }) => {
   const formatContent = (content: string) => {
     return content.split('\n').map((line, index) => {
       if (line.trim() === '') return <br key={index} />;
@@ -32,6 +33,18 @@ const LorePanel: React.FC<LorePanelProps> = ({ chapter, onClose }) => {
   const currentIndex = loreChapters.findIndex(ch => ch.id === chapter.id);
   const previousChapter = currentIndex > 0 ? loreChapters[currentIndex - 1] : null;
   const nextChapter = currentIndex < loreChapters.length - 1 ? loreChapters[currentIndex + 1] : null;
+
+  const handlePreviousChapter = () => {
+    if (previousChapter) {
+      onChapterSelect(previousChapter);
+    }
+  };
+
+  const handleNextChapter = () => {
+    if (nextChapter) {
+      onChapterSelect(nextChapter);
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -94,7 +107,10 @@ const LorePanel: React.FC<LorePanelProps> = ({ chapter, onClose }) => {
           <div className="p-4 border-t border-mantle-mint/20 bg-mantle-darkGray/80 flex justify-between items-center">
             <div className="flex items-center space-x-4">
               {previousChapter && (
-                <button className="flex items-center space-x-2 text-gray-400 hover:text-mantle-mint transition-colors duration-200">
+                <button 
+                  onClick={handlePreviousChapter}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-mantle-mint transition-colors duration-200"
+                >
                   <ChevronLeft size={16} />
                   <span className="text-sm">Previous</span>
                 </button>
@@ -109,7 +125,10 @@ const LorePanel: React.FC<LorePanelProps> = ({ chapter, onClose }) => {
 
             <div className="flex items-center space-x-4">
               {nextChapter && (
-                <button className="flex items-center space-x-2 text-gray-400 hover:text-mantle-mint transition-colors duration-200">
+                <button 
+                  onClick={handleNextChapter}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-mantle-mint transition-colors duration-200"
+                >
                   <span className="text-sm">Next</span>
                   <ChevronRight size={16} />
                 </button>

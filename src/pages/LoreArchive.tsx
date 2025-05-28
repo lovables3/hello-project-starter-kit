@@ -58,7 +58,8 @@ const LoreArchive: React.FC = () => {
       {selectedChapter && (
         <LorePanel 
           chapter={selectedChapter} 
-          onClose={() => setSelectedChapter(null)} 
+          onClose={() => setSelectedChapter(null)}
+          onChapterSelect={setSelectedChapter}
         />
       )}
 
