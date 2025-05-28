@@ -1,0 +1,116 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 164 72% 60%;
+    --primary-foreground: 0 0% 3%;
+
+    --secondary: 324 76% 67%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 164 72% 60%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 324 76% 67%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 164 72% 60%;
+    --sidebar-primary-foreground: 0 0% 3%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 324 76% 67%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-mantle-dark text-foreground font-sans antialiased;
+    background: #000000;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #121212;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #4DE2C1, #EA6BCB);
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply relative bg-opacity-10 bg-white backdrop-blur-md border border-white/10 rounded-lg overflow-hidden;
+  }
+  
+  .glow-effect {
+    @apply relative;
+  }
+
+  .glow-effect::after {
+    @apply content-[''] absolute inset-0 rounded-lg;
+    box-shadow: 0 0 20px 2px rgba(77, 226, 193, 0.3);
+    z-index: -1;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 10px rgba(77, 226, 193, 0.6);
+  }
+
+  .button-gradient {
+    @apply bg-gradient-to-r from-mantle-mint to-mantle-pink;
+  }
+
+  .button-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-mantle-mint/20;
+  }
+}
+
+.emoji {
+  color: initial !important;
+}
+
+/* remove unwanted input-like caret/click focus everywhere */
+*:focus {
+  outline: none !important;
+  caret-color: transparent !important;
+}
+
+/* optionally disable text selection too */
+* {
+  user-select: none;
+}
