@@ -148,9 +148,8 @@ const Blackjack: React.FC = () => {
     
     return (
       <div 
-        className="w-20 h-28 bg-white border-2 border-gray-300 rounded-lg flex flex-col items-center justify-center text-black relative transform hover:scale-110 hover:-translate-y-3 hover:rotate-2 transition-all duration-500 shadow-lg hover:shadow-2xl"
+        className="w-20 h-28 bg-white border-2 border-gray-300 rounded-lg flex flex-col items-center justify-center text-black relative transform hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl"
         style={{ 
-          animationDelay: `${index * 150}ms`,
           color: isRed ? '#ef4444' : '#000000'
         }}
       >
@@ -162,7 +161,6 @@ const Blackjack: React.FC = () => {
           {card.suit === 'spades' && '♠️'}
         </div>
         <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-transparent via-transparent to-white/20 pointer-events-none"></div>
-        <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-mantle-mint/20 to-mantle-pink/20 opacity-0 hover:opacity-100 transition-opacity duration-300 blur-sm -z-10"></div>
       </div>
     );
   };
@@ -186,14 +184,6 @@ const Blackjack: React.FC = () => {
         </Button>
       </Link>
 
-      {/* Online coming soon */}
-      <div className="fixed top-6 right-6 z-10">
-        <div className="flex items-center gap-2 bg-gray-800/50 backdrop-blur-sm border border-gray-600 rounded-lg px-3 py-2">
-          <Globe className="h-4 w-4 text-mantle-mint" />
-          <span className="text-sm text-gray-300">Online coming soon</span>
-        </div>
-      </div>
-
       <GlassCard className="max-w-4xl mx-auto">
         <div className="text-center mb-6">
           <div className="flex items-center justify-center mb-4">
@@ -213,6 +203,14 @@ const Blackjack: React.FC = () => {
             >
               Start Game
             </Button>
+            
+            {/* Online coming soon - moved under Start Game button */}
+            <div className="mt-6">
+              <div className="flex items-center justify-center gap-2 bg-gray-800/50 backdrop-blur-sm border border-gray-600 rounded-lg px-3 py-2 inline-flex">
+                <Globe className="h-4 w-4 text-mantle-mint" />
+                <span className="text-sm text-gray-300">Online coming soon</span>
+              </div>
+            </div>
           </div>
         )}
 
