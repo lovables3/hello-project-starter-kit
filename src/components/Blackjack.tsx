@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import GlassCard from './GlassCard';
@@ -131,30 +130,33 @@ const Blackjack: React.FC = () => {
     setDeck([]);
   };
 
-  const getCardFileName = (card: Card) => {
-    // Формат: значение_масть.png
-    // Например: A_spades.png, 10_hearts.png, J_clubs.png
-    return `${card.value}_${card.suit}.png`;
-  };
-
-  const renderCard = (card: Card, hidden = false) => {
+  const renderCard = (card: Card, hidden = false, index = 0) => {
     if (hidden) {
       return (
-        <div className="w-20 h-28 bg-gradient-to-br from-blue-800 to-blue-900 border-2 border-blue-600 rounded-lg flex items-center justify-center">
-          <div className="text-blue-300 text-2xl">?</div>
+        <div className="w-20 h-28 bg-gradient-to-br from-blue-800 to-blue-900 border-2 border-blue-600 rounded-lg flex items-center justify-center transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-500/30">
+          <div className="text-blue-300 text-2xl animate-pulse">?</div>
         </div>
       );
     }
 
+    const isRed = card.suit === 'hearts' || card.suit === 'diamonds';
+    
     return (
-      <div className="w-20 h-28 bg-white border-2 border-gray-300 rounded-lg flex flex-col items-center justify-center text-black relative">
+      <div 
+        className="w-20 h-28 bg-white border-2 border-gray-300 rounded-lg flex flex-col items-center justify-center text-black relative transform hover:scale-105 hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-xl animate-fade-in"
+        style={{ 
+          animationDelay: `${index * 100}ms`,
+          color: isRed ? '#ef4444' : '#000000'
+        }}
+      >
         <div className="text-lg font-bold">{card.value}</div>
-        <div className="text-2xl">
+        <div className="text-2xl animate-pulse-slow">
           {card.suit === 'hearts' && '♥️'}
           {card.suit === 'diamonds' && '♦️'}
           {card.suit === 'clubs' && '♣️'}
           {card.suit === 'spades' && '♠️'}
         </div>
+        <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-transparent via-transparent to-white/10 pointer-events-none"></div>
       </div>
     );
   };
@@ -171,17 +173,17 @@ const Blackjack: React.FC = () => {
       >
         <Button 
           variant="outline"
-          className="border-gray-500 text-gray-400 hover:bg-gray-500 hover:text-white"
+          className="border-gray-500 text-gray-400 hover:bg-gray-500 hover:text-white transition-all duration-300 hover:scale-105"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Portal
         </Button>
       </Link>
 
-      <GlassCard className="max-w-4xl mx-auto">
+      <GlassCard className="max-w-4xl mx-auto animate-fade-in">
         <div className="text-center mb-6">
           <div className="flex items-center justify-center mb-4">
-            <Spade className="h-12 w-12 mr-3 text-mantle-mint" />
+            <Spade className="h-12 w-12 mr-3 text-mantle-mint animate-pulse-glow" />
             <h1 className="text-4xl font-bold bg-gradient-to-r from-mantle-mint to-mantle-pink bg-clip-text text-transparent">
               Blackjack
             </h1>
@@ -190,10 +192,10 @@ const Blackjack: React.FC = () => {
         </div>
 
         {gameState === 'waiting' && (
-          <div className="text-center py-8">
+          <div className="text-center py-8 animate-fade-in">
             <Button 
               onClick={startGame}
-              className="bg-gradient-to-r from-mantle-mint to-mantle-pink text-black font-bold px-8 py-3 text-lg"
+              className="bg-gradient-to-r from-mantle-mint to-mantle-pink text-black font-bold px-8 py-3 text-lg hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-mantle-mint/30"
             >
               Start Game
             </Button>
@@ -201,7 +203,7 @@ const Blackjack: React.FC = () => {
         )}
 
         {gameState !== 'waiting' && (
-          <div className="space-y-8">
+          <div className="space-y-8 animate-fade-in">
             {/* Dealer's Hand */}
             <div className="text-center">
               <h3 className="text-xl font-semibold mb-4 text-gray-300">
@@ -209,8 +211,8 @@ const Blackjack: React.FC = () => {
               </h3>
               <div className="flex justify-center gap-2 mb-4">
                 {dealerCards.map((card, index) => (
-                  <div key={index}>
-                    {renderCard(card, gameState === 'playing' && index === 1)}
+                  <div key={index} className="animate-scale-in" style={{ animationDelay: `${index * 150}ms` }}>
+                    {renderCard(card, gameState === 'playing' && index === 1, index)}
                   </div>
                 ))}
               </div>
@@ -223,27 +225,27 @@ const Blackjack: React.FC = () => {
               </h3>
               <div className="flex justify-center gap-2 mb-4">
                 {playerCards.map((card, index) => (
-                  <div key={index}>
-                    {renderCard(card)}
+                  <div key={index} className="animate-scale-in" style={{ animationDelay: `${index * 150}ms` }}>
+                    {renderCard(card, false, index)}
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Game Controls */}
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-4 animate-fade-in">
               {gameState === 'playing' && (
                 <>
                   <Button 
                     onClick={hit}
-                    className="bg-mantle-mint text-black font-semibold px-6"
+                    className="bg-mantle-mint text-black font-semibold px-6 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-mantle-mint/30"
                   >
                     <Plus className="mr-2 h-4 w-4" />
                     Hit
                   </Button>
                   <Button 
                     onClick={stand}
-                    className="bg-mantle-pink text-black font-semibold px-6"
+                    className="bg-mantle-pink text-black font-semibold px-6 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-mantle-pink/30"
                   >
                     Stand
                   </Button>
@@ -253,7 +255,7 @@ const Blackjack: React.FC = () => {
               {gameState !== 'playing' && gameState !== 'waiting' && (
                 <Button 
                   onClick={resetGame}
-                  className="bg-gradient-to-r from-mantle-mint to-mantle-pink text-black font-bold px-6"
+                  className="bg-gradient-to-r from-mantle-mint to-mantle-pink text-black font-bold px-6 hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-mantle-mint/30"
                 >
                   <RotateCcw className="mr-2 h-4 w-4" />
                   New Game
@@ -263,7 +265,7 @@ const Blackjack: React.FC = () => {
 
             {/* Game Status */}
             {gameState !== 'playing' && gameState !== 'waiting' && (
-              <div className="text-center p-4 border border-gray-600 rounded-lg bg-gray-800/30">
+              <div className="text-center p-4 border border-gray-600 rounded-lg bg-gray-800/30 animate-scale-in">
                 <p className="text-xl font-bold">
                   {gameState === 'playerWin' && '🎉 You Win!'}
                   {gameState === 'dealerWin' && '😔 Dealer Wins'}
