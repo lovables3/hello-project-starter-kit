@@ -197,9 +197,67 @@ on Mantle, code didn't ship without story
   {
     id: 5,
     title: "Chapter 5 — Treasury Games & Beyond",
-    subtitle: "Coming Soon",
-    content: "This chapter is still being written...",
-    isUnlocked: false,
+    subtitle: "The Infinite Allocation",
+    content: `🏦 **the treasury awakens**
+first it was static —
+$3B in cold multisigs
+a sleeping giant on the ledger
+
+but then came the proposals
+then the signals
+then the flow
+
+🎮 **the games begin**
+mantle didn't just fund projects
+it gamified capital
+x quests, farming zones, dynamic allocations
+players became builders
+builders became strategists
+
+📊 **the allocators**
+roles shifted:
+not everyone deployed code
+some deployed capital
+some tracked TVL
+some made dashboards, L2Beat forks, dapp maps
+they weren't VCs —
+they were open-source allocators
+
+🎲 **the treasury games**
+every epoch, a new phase
+who gets funding?
+who builds the KPI models?
+who spins up the next round of quests?
+the treasury wasn't just money
+it was an interface
+
+🪙 **the experiment expands**
+funding games
+reputation loops
+retroactive scoreboards
+Zentry, L2BEAT, Yapper, Realms —
+all became treasury-aware primitives
+capital didn't flow by pitch decks
+it flowed by onchain action
+
+🕹️ **enter HyperPlay**
+as web3 gaming matured, the treasury followed
+HyperPlay integrated onchain identity, in-game assets, and token rewards
+games weren't just entertainment
+they were distribution layers
+the treasury became playable
+
+🚀 **and beyond**
+the final phase wasn't closure
+it was expansion
+real-world deployment
+cross-chain yield strategy
+memecoin pilots
+public goods DAOs
+
+the treasury wasn't the end
+it was the starting gun`,
+    isUnlocked: true,
     position: { x: 80, y: 60 }
   }
 ];

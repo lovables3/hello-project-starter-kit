@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import GlassCard from './GlassCard';
@@ -264,7 +263,7 @@ const Blackjack: React.FC = () => {
                 </>
               )}
               
-              {gameState !== 'playing' && gameState !== 'waiting' && (
+              {gameState !== 'playing' && (
                 <Button 
                   onClick={resetGame}
                   className="bg-gradient-to-r from-mantle-mint to-mantle-pink text-black font-bold px-6 hover:scale-110 transition-all duration-300 hover:shadow-lg hover:shadow-mantle-mint/30"
@@ -276,7 +275,7 @@ const Blackjack: React.FC = () => {
             </div>
 
             {/* Game Status */}
-            {gameState !== 'playing' && gameState !== 'waiting' && (
+            {gameState !== 'playing' && (
               <div className="text-center p-4 border border-gray-600 rounded-lg bg-gray-800/30">
                 <p className="text-xl font-bold">
                   {gameState === 'playerWin' && '🎉 You Win!'}
